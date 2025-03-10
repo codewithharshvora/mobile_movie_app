@@ -4,6 +4,29 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { Image, ImageBackground, Text, View } from "react-native";
 
+const tabs = [
+  {
+    name: "index",
+    icon: icons.home,
+    title: "Home",
+  },
+  {
+    name: "search",
+    icon: icons.search,
+    title: "Search",
+  },
+  {
+    name: "saved",
+    icon: icons.save,
+    title: "Save",
+  },
+  {
+    name: "profile",
+    icon: icons.person,
+    title: "Profile",
+  },
+];
+
 const TabIcon = ({
   focused,
   icon,
@@ -58,46 +81,20 @@ const _layout = () => {
         },
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.home} title="Home" />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="search"
-        options={{
-          title: "Search",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.search} title="Search" />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="saved"
-        options={{
-          title: "Saved",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.save} title="Save" />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.person} title="Profile" />
-          ),
-        }}
-      />
+      {tabs.map((tab) => {
+        return (
+          <Tabs.Screen
+            name={tab.name}
+            options={{
+              title: tab.title,
+              headerShown: false,
+              tabBarIcon: ({ focused }) => (
+                <TabIcon focused={focused} icon={tab.icon} title={tab.title} />
+              ),
+            }}
+          />
+        );
+      })}
     </Tabs>
   );
 };
